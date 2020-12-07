@@ -34,37 +34,30 @@ function propmtUser() {
             name: 'role',
             choices: ["intern", "engineer", "manager"],
         },
+        // 'When' code from: https://stackoverflow.com/questions/56412516/conditional-prompt-rendering-in-inquirer
+        {
+            type: "input",
+            message: "What school does the intern go to?",
+            name: 'school',
+            when: (answers) => answers.role === 'intern'
+        },
+        {
+            type: "input",
+            message: "What is the engineer's github Id?",
+            name: 'github',
+            when: (answers) => answers.role === 'engineer'
+        },     
+        {
+            type: "number",
+            message: "What is the manager's office number?",
+            name: 'officeNumber',
+            when: (answers) => answers.role === 'manager'
+        },
         ])
-        .then(function(response) {
-            if (response.role === 'intern') {
-                inquirer.prompt(
-                    {
-                        type: "input",
-                        message: "What school does the intern go to?",
-                        name: 'school',
-                    }
-                )
-            }
-            else if (response.role === 'engineer') {
-                inquirer.prompt(
-                    {
-                        type: "input",
-                        message: "What is the engineer's github Id?",
-                        name: 'github',
-                    }
-                )
-            }
-            else if (response.role === 'manager') {
-                inquirer.prompt(
-                    {
-                        type: "input",
-                        message: "What is the manager's office number?",
-                        name: 'office',
-                    }
-                )
-            }
-            
-        })
+        
+
+      
+
         
     }
 
