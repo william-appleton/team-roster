@@ -35,6 +35,36 @@ function propmtUser() {
             choices: ["intern", "engineer", "manager"],
         },
         ])
+        .then(function(response) {
+            if (response.role === 'intern') {
+                inquirer.prompt(
+                    {
+                        type: "input",
+                        message: "What school does the intern go to?",
+                        name: 'school',
+                    }
+                )
+            }
+            else if (response.role === 'engineer') {
+                inquirer.prompt(
+                    {
+                        type: "input",
+                        message: "What is the engineer's github Id?",
+                        name: 'github',
+                    }
+                )
+            }
+            else if (response.role === 'manager') {
+                inquirer.prompt(
+                    {
+                        type: "input",
+                        message: "What is the manager's office number?",
+                        name: 'office',
+                    }
+                )
+            }
+            
+        })
         
     }
 
