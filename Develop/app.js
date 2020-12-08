@@ -10,6 +10,10 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+//blank array to push employee objects to
+let employeeArr = []
+
+//function to promt user for data on employees
 function propmtUser() {
     inquirer
         .prompt([
@@ -55,19 +59,65 @@ function propmtUser() {
         },
         ])
         
+        //switch statement to handle different role types and then prompt the user to add more employees or not
         .then((answers) => {
            switch(answers.role) {
                case "intern":
                    let newIntern = new Intern(answers.name, answers.Id, answers.email, answers.school)
-                   console.log(newIntern)
+                   employeeArr.push(newIntern)
+                   inquirer.prompt(
+                       {
+                           type: 'list',
+                           message: "Do you want to add another employee?",
+                           name: "repeat",
+                           choices: ["yes", 'no']
+                        })
+                        .then((answer) => {
+                            if (answer.repeat === "yes") {
+                                propmtUser();
+                            } else {
+                                console.log("All employees added, rendering html...")
+                                render(employeeArr);
+                            }
+                        })
                    break;
                 case "engineer":
                     let newEngineer = new Engineer(answers.name, answers.Id, answers.email, answers.github)
-                    console.log(newEngineer)
+                    employeeArr.push(newEngineer)
+                    inquirer.prompt(
+                        {
+                            type: 'list',
+                            message: "Do you want to add another employee?",
+                            name: "repeat",
+                            choices: ["yes", 'no']
+                         })
+                         .then((answer) => {
+                             if (answer.repeat === "yes") {
+                                 propmtUser();
+                             } else {
+                                console.log("All employees added, rendering html...")
+                                render(employeeArr);
+                             }
+                         })
                     break;
                 case "manager":
                     let newManager = new Manager(answers.name, answers.Id, answers.email, answers.officeNumber)
-                    console.log(newManager)
+                    employeeArr.push(newManager)
+                    inquirer.prompt(
+                        {
+                            type: 'list',
+                            message: "Do you want to add another employee?",
+                            name: "repeat",
+                            choices: ["yes", 'no']
+                         })
+                         .then((answer) => {
+                             if (answer.repeat === "yes") {
+                                 propmtUser();
+                             } else {
+                                console.log("All employees added, rendering html...")
+                                render(employeeArr);
+                             }
+                         })
                     break;
            }
         })
