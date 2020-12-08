@@ -6,3 +6,7 @@ To use this app, open the app.js file within your terminal and run it with node.
 
 The repo can be found at: https://github.com/william-appleton/team-roster
 
+Here is a screenshot of a sample output:
+![](https://raw.githubusercontent.com/william-appleton/team-roster/main/assets/screenshot.PNG)
+
+A video of the can be seen here: https://drive.google.com/file/d/1UerF6oqeEkPR7q1dhzVTFpEj_Miv7oVO/view
