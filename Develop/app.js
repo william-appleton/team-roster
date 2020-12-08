@@ -72,15 +72,20 @@ function propmtUser() {
                            name: "repeat",
                            choices: ["yes", 'no']
                         })
+                        //code to repeat questions or render all employees into an html page
                         .then((answer) => {
                             if (answer.repeat === "yes") {
                                 propmtUser();
                             } else {
                                 console.log("All employees added, rendering html...")
-                                render(employeeArr);
+                                let data = render(employeeArr);
+                                fs.writeFile(outputPath, data, function(err){
+                                    if (err) return console.log(err);
+                                })
                             }
                         })
                    break;
+
                 case "engineer":
                     let newEngineer = new Engineer(answers.name, answers.Id, answers.email, answers.github)
                     employeeArr.push(newEngineer)
@@ -91,15 +96,20 @@ function propmtUser() {
                             name: "repeat",
                             choices: ["yes", 'no']
                          })
+                         //code to repeat questions or render all employees into an html page
                          .then((answer) => {
-                             if (answer.repeat === "yes") {
-                                 propmtUser();
-                             } else {
+                            if (answer.repeat === "yes") {
+                                propmtUser();
+                            } else {
                                 console.log("All employees added, rendering html...")
-                                render(employeeArr);
-                             }
-                         })
+                                let data = render(employeeArr);
+                                fs.writeFile(outputPath, data, function(err){
+                                    if (err) return console.log(err);
+                                })
+                            }
+                        })
                     break;
+
                 case "manager":
                     let newManager = new Manager(answers.name, answers.Id, answers.email, answers.officeNumber)
                     employeeArr.push(newManager)
@@ -110,14 +120,18 @@ function propmtUser() {
                             name: "repeat",
                             choices: ["yes", 'no']
                          })
+                         //code to repeat questions or render all employees into an html page
                          .then((answer) => {
-                             if (answer.repeat === "yes") {
-                                 propmtUser();
-                             } else {
+                            if (answer.repeat === "yes") {
+                                propmtUser();
+                            } else {
                                 console.log("All employees added, rendering html...")
-                                render(employeeArr);
-                             }
-                         })
+                                let data = render(employeeArr);
+                                fs.writeFile(outputPath, data, function(err){
+                                    if (err) return console.log(err);
+                                })
+                            }
+                        })
                     break;
            }
         })
