@@ -20,8 +20,8 @@ function propmtUser() {
         },
         {   
             type: 'input',
-            message: `What is the person's ID?`,
-            name: 'ID',
+            message: `What is the person's Id?`,
+            name: 'Id',
         },
         {   
             type: 'input',
@@ -55,10 +55,22 @@ function propmtUser() {
         },
         ])
         
-
-      
-
-        
+        .then((answers) => {
+           switch(answers.role) {
+               case "intern":
+                   let newIntern = new Intern(answers.name, answers.Id, answers.email, answers.school)
+                   console.log(newIntern)
+                   break;
+                case "engineer":
+                    let newEngineer = new Engineer(answers.name, answers.Id, answers.email, answers.github)
+                    console.log(newEngineer)
+                    break;
+                case "manager":
+                    let newManager = new Manager(answers.name, answers.Id, answers.email, answers.officeNumber)
+                    console.log(newManager)
+                    break;
+           }
+        })
     }
 
 propmtUser(); 
